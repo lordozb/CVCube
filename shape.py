@@ -21,9 +21,12 @@ for c in cnt:
 	
 	# DRAWING CONTOURS
 	cv2.drawContours(img, [c], -1, (0, 255, 0), 3)	
+	
+	# CALCULATING NUMBER OF SIDES	
 	peri = cv2.arcLength(c, True)
 	approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 	sides = len(approx)
+
 	x,y,w,h = cv2.boundingRect(c)
 
 	print('I see a :') 	
@@ -52,6 +55,9 @@ for c in cnt:
 		shape = str(sides)+' sided figure'
 	
 	cv2.putText(img, shape, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+	#cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
+
+	
 
 cv2.imshow('img', img)		 
 
