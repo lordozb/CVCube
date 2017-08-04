@@ -1,0 +1,134 @@
+maroon,"(128,0,0)",2
+dark red,"(139,0,0)",2
+brown,"(165,42,42)",2
+firebrick,"(178,34,34)",2
+crimson,"(220,20,60)",2
+red,"(255,0,0)",2
+orange red,"(255,69,0)",11
+dark orange,"(255,140,0)",11
+orange,"(255,165,0)",11
+gold,"(255,215,0)",5
+dark golden rod,"(184,134,11)",5
+golden rod,"(218,165,32)",5
+olive,"(128,128,0)",3
+yellow,"(255,255,0)",5
+yellow green,"(154,205,50)",3
+dark olive green,"(85,107,47)",3
+olive drab,"(107,142,35)",3
+lawn green,"(124,252,0)",3
+chart reuse,"(127,255,0)",3
+green yellow,"(173,255,47)",3
+dark green,"(0,100,0)",3
+green,"(0,128,0)",3
+forest green,"(34,139,34)",3
+lime,"(0,255,0)",3
+lime green,"(50,205,50)",3
+medium spring green,"(0,250,154)",3
+spring green,"(0,255,127)",3
+sea green,"(46,139,87)",3
+medium aqua marine,"(102,205,170)",6
+medium sea green,"(60,179,113)",3
+light sea green,"(32,178,170)",6
+dark slate gray,"(47,79,79)",6
+teal,"(0,128,128)",6
+dark cyan,"(0,139,139)",6
+aqua,"(0,255,255)",6
+cyan,"(0,255,255)",6
+dark turquoise,"(0,206,209)",6
+turquoise,"(64,224,208)",6
+medium turquoise,"(72,209,204)",6
+pale turquoise,"(175,238,238)",6
+aqua marine,"(127,255,212)",6
+steel blue,"(70,130,180)",4
+corn flower blue,"(100,149,237)",4
+deep sky blue,"(0,191,255)",4
+dodger blue,"(30,144,255)",4
+light blue,"(173,216,230)",4
+sky blue,"(135,206,235)",4
+light sky blue,"(135,206,250)",6
+midnight blue,"(25,25,112)",4
+navy,"(0,0,128)",4
+dark blue,"(0,0,139)",4
+medium blue,"(0,0,205)",4
+blue,"(0,0,255)",4
+royal blue,"(65,105,225)",4
+blue violet,"(138,43,226)",4
+indigo,"(75,0,130)",4
+dark slate blue,"(72,61,139)",4
+slate blue,"(106,90,205)",4
+medium slate blue,"(123,104,238)",4
+medium purple,"(147,112,219)",7
+dark magenta,"(139,0,139)",7
+dark violet,"(148,0,211)",7
+dark orchid,"(153,50,204)",7
+medium orchid,"(186,85,211)",7
+purple,"(128,0,128)",7
+violet,"(238,130,238)",7
+magenta / fuchsia,"(255,0,255)",8
+orchid,"(218,112,214)",8
+medium violet red,"(199,21,133)",8
+pale violet red,"(219,112,147)",8
+deep pink,"(255,20,147)",8
+hot pink,"(255,105,180)",8
+light pink,"(255,182,193)",8
+pink,"(255,192,203)",8
+saddle brown,"(139,69,19)",9
+sienna,"(160,82,45)",9
+chocolate,"(210,105,30)",9
+peru,"(205,133,63)",9
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+slate gray,"(112,128,144)",
+light slate gray,"(119,136,153)",
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+black,"(0,0,0)",
+dim gray / dim grey,"(105,105,105)",
+gray / grey,"(128,128,128)",
+dark gray / dark grey,"(169,169,169)",

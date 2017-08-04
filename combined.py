@@ -6,17 +6,16 @@ cap = cv2.VideoCapture(0)
 
 while(True):
 	# Capture frame-by-frame
-	ret, frame = cap.read()
-	
-	# BLUR TO EVEN OUT THE COLOR AND KEEP EDGES CLEAN
-	blur = cv2.bilateralFilter(frame,9,75,75)	
+	ret, frame = cap.read()	
 	
 	# Our operations on the frame come here
-	gray = cv2.cvtColor(blue, cv2.COLOR_BGR2GRAY)
-	blur = cv2.GaussianBlur(gray,(5,5),0)
+	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+	# BLUR TO EVEN OUT THE COLOR AND KEEP EDGES CLEAN
+	blur = cv2.bilateralFilter(gray,9,75,75)
 	ret, thresh_img = cv2.threshold(blur,120,255,cv2.THRESH_BINARY)
 
-	contours =  cv2.findContours(thresh_img,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)[-2]
+	contours, h =  cv2.findContours(thresh_img,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 	for c in contours:
 		cv2.drawContours(frame, [c], -1, (0,255,0), 3)
 		
@@ -49,7 +48,7 @@ while(True):
 			shape = 'Circle'
 	
 		else :
-			print(str(sides)+" sides figure")
+			print(str(sides)+" sided figure")
 			shape = str(sides)+' sided figure'
 	
 		cv2.putText(frame, shape, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
