@@ -28,10 +28,44 @@ for c in cnt:
 
 	bgr = bgr / len(x)
 	from colors import colors
-	print colors(bgr[0],bgr[1],bgr[2])	
+	color =  colors(bgr[0],bgr[1],bgr[2])	
 	
 	# DRAWING CONTOURS
-	cv2.drawContours(img, [c], -1, (0, 0, 255), 3)	
+	cv2.drawContours(img, [c], -1, (0, 0, 255), 3)
+	# CALCULATING NUMBER OF SIDES	
+	peri = cv2.arcLength(c, True)
+	approx = cv2.approxPolyDP(c, 0.04 * peri, True)
+	sides = len(approx)
+
+	x,y,w,h = cv2.boundingRect(c)
+
+	print('I see a :') 	
+	shape = ''	
+
+	if sides == 3:
+		print 'Triangle'
+		shape = 'Triangle'
+
+	elif sides == 4:		
+		diff = ((max(w,h) - min(w,h)) / float(min(w,h))) * 100
+	
+		if diff < 5:
+			print 'Square'
+			shape = 'Square'
+		elif diff > 5:
+			print 'Rectangle'
+			shape = 'Rectangle'
+
+	elif sides == 7 or sides == 8:
+		print 'circle'
+		shape = 'Circle'
+
+	else :
+		print(str(sides)+" sided figure")
+		shape = str(sides)+' sided figure'
+
+	cv2.putText(img, shape+"|"+color, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+
 
 cv2.imshow('img', img)		 
 
