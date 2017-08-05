@@ -28,10 +28,10 @@ spring green,"(0,255,127)",3
 sea green,"(46,139,87)",3
 medium aqua marine,"(102,205,170)",6
 medium sea green,"(60,179,113)",3
-light sea green,"(32,178,170)",6
-dark slate gray,"(47,79,79)",6
-teal,"(0,128,128)",6
-dark cyan,"(0,139,139)",6
+light sea green,"(32,178,170)",3
+dark slate gray,"(47,79,79)",3
+teal,"(0,128,128)",3
+dark cyan,"(0,139,139)",3
 aqua,"(0,255,255)",6
 cyan,"(0,255,255)",6
 dark turquoise,"(0,206,209)",6

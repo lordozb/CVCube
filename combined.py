@@ -18,7 +18,7 @@ while(True):
 	contours, h =  cv2.findContours(thresh_img,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 	for c in contours:
 		cv2.drawContours(frame, [c], -1, (0,255,0), 3)
-		
+
 		# CALCULATING NUMBER OF SIDES	
 		peri = cv2.arcLength(c, True)
 		approx = cv2.approxPolyDP(c, 0.04 * peri, True)
