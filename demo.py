@@ -6,8 +6,8 @@ import time
 
 cap = cv2.VideoCapture(1)
 cap.set(cv2.cv.CV_CAP_PROP_FPS, 1) 
-cap.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH, 640);
-cap.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 360);
+cap.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 360)
 
 winName1 = "Live feed"
 winName2 = "Processed Image"
