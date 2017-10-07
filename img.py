@@ -1,11 +1,12 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+from colors import colors
 
-def shape():
+def shape(name):
 
 	# ORIGINAL IMAGE
-	img = cv2.imread('img.png')
+	img = cv2.imread(name)
 	#cv2.imshow('img',img)
 
 	# BLUR TO EVEN OUT THE COLOR AND KEEP EDGES CLEAN
@@ -22,21 +23,19 @@ def shape():
 	print('Number of objects = '+str(len(cnt)))
 
 	for c in cnt:
-				
-		#x = np.ravel(c)
-		#x = np.reshape(x,(len(x) / 2 , 2)).T
+		
 		bgr = np.array([0,0,0])
-		for i in c:		
+		for i in c:
 			px = img[i[0][1],i[0][0]]
 			bgr = bgr + px
 
 		bgr = bgr / len(c)
 		print bgr
-		from colors import colors
 		color =  colors(bgr[2],bgr[1],bgr[0])	
 	
 		# DRAWING CONTOURS
 		cv2.drawContours(img, [c], -1, (0, 0, 255), 3)
+
 		# CALCULATING NUMBER OF SIDES	
 		peri = cv2.arcLength(c, True)
 		approx = cv2.approxPolyDP(c, 0.04 * peri, True)
@@ -68,12 +67,17 @@ def shape():
 		else :
 			print(str(sides)+" sided figure")
 			shape = str(sides)+' sided figure'
-
+		
+		print color
+		area = cv2.contourArea(c)
+		print area
 		cv2.putText(img, shape+"|"+color, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
 		cv2.imshow('final',img)
+		
+		cv2.waitKey(0)
+		cv2.destroyAllWindows()
 
-	#cv2.imshow('img', img)		 
-
-	#cv2.waitKey(0)
-	#cv2.destroyAllWindows()
-
+if __name__ == "__main__":
+	import sys
+	img_name = sys.argv[1]		
+	shape(img_name)
