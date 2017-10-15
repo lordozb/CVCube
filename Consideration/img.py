@@ -1,7 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from colors import colors
+from masking import doMagic
 
 def shape(name):
 
@@ -23,15 +23,6 @@ def shape(name):
 	print('Number of objects = '+str(len(cnt)))
 
 	for c in cnt:
-		
-		bgr = np.array([0,0,0])
-		for i in c:
-			px = img[i[0][1],i[0][0]]
-			bgr = bgr + px
-
-		bgr = bgr / len(c)
-		print bgr
-		color =  colors(bgr[2],bgr[1],bgr[0])	
 	
 		# DRAWING CONTOURS
 		cv2.drawContours(img, [c], -1, (0, 0, 255), 3)
@@ -68,11 +59,18 @@ def shape(name):
 			print(str(sides)+" sided figure")
 			shape = str(sides)+' sided figure'
 		
-		print color
 		area = cv2.contourArea(c)
 		print area
-		cv2.putText(img, shape+"|"+color, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-		cv2.imshow('final',img)
+
+		#cv2.putText(img, shape, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+		#cv2.imshow('final',img)
+
+		red,green,blue = doMagic(img)
+		print "red = "+str(red/area*100)+"%"
+		print "green = "+str(green/area*100)+"%"
+		print "blue = "+str(blue/area*100)+"%"	
+	
+
 		
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
