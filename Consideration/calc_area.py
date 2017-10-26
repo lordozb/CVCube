@@ -15,6 +15,6 @@ def calc_area(mask):
 	for i in range(len(conts)):
 		x,y,w,h=cv2.boundingRect(conts[i])
 		#cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255), 2)
-		area = area + cv2.contourArea(conts[i])
+		area = cv2.contourArea(conts[i])
 	
 	return area

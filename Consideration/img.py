@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from masking import doMagic
 
+
 def shape(name):
 
 	# ORIGINAL IMAGE
 	img = cv2.imread(name)
-	#cv2.imshow('img',img)
+	cv2.imshow('img',img)
 	
 	temp = img.copy()	
 	
@@ -18,9 +19,8 @@ def shape(name):
 	blur_gray = cv2.cvtColor(blur, cv2.COLOR_BGR2GRAY)
 
 	# APPLYING THRESHOLD
-	ret, img_threshold = cv2.threshold(blur_gray, 220, 255, cv2.THRESH_BINARY_INV)
-
-
+	ret, img_threshold = cv2.threshold(blur_gray, 120, 255, cv2.THRESH_BINARY_INV)
+	
 	# FINDING THE NUMBER OF CONTOURS
 	cnt, h = cv2.findContours(img_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -64,16 +64,18 @@ def shape(name):
 			shape = str(sides)+' sided figure'
 		
 		area = cv2.contourArea(c)
-		#print area
+		print area
 
 		#cv2.putText(img, shape, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-		cv2.imshow('final',img[y:y+h, x:x+w])
+		
+		cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
 		red,green,blue,yellow = doMagic(img[y:y+h, x:x+w])
 		print "red = "+str(red/area*100)+"%"
 		print "green = "+str(green/area*100)+"%"
 		print "blue = "+str(blue/area*100)+"%"
 		print "yellow = "+str(yellow/area*100)+"%"
 		
+
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
 
@@ -81,3 +83,6 @@ if __name__ == "__main__":
 	import sys
 	img_name = sys.argv[1]		
 	shape(img_name)
+
+
+

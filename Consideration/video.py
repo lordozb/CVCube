@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from colors import colors
+from masking import doMagic
 
 cap = cv2.VideoCapture(0)
 count = 0
@@ -54,6 +54,7 @@ while(True):
 			shape = str(sides)+' sided figure'
 	
 		cv2.putText(frame, shape, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+		
 
 	# Display the resulting frame
 	cv2.imshow('frame',frame)
