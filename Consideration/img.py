@@ -64,25 +64,19 @@ def shape(name):
 			shape = str(sides)+' sided figure'
 		
 		area = cv2.contourArea(c)
-		print area
 
-		#cv2.putText(img, shape, (x + w / 2, y + h / 2), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-		
-		cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
+		#cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
 		red,green,blue,yellow = doMagic(img[y:y+h, x:x+w])
-		print "red = "+str(red/area*100)+"%"
-		print "green = "+str(green/area*100)+"%"
-		print "blue = "+str(blue/area*100)+"%"
-		print "yellow = "+str(yellow/area*100)+"%"
-		
-
+		cv2.imshow("small", img[y:y+h, x:x+w])
+		rect = cv2.minAreaRect(c)
+		print "Dimensions = "+str(rect[1])
+		print "red = "+str(red)
+		print "green = "+str(green)
+		print "yellow = "+str(yellow)
+		print "blue = "+str(blue)
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-	import sys
-	img_name = sys.argv[1]		
-	shape(img_name)
 
 
 
