@@ -13,7 +13,7 @@ def doMagic(img):
 	#cv2.imshow('median', med_blur)
 
 	hsv = cv2.cvtColor(med_blur, cv2.COLOR_BGR2HSV)
-	
+	#cv2.imwrite('hsv.png',hsv)
 	red = mask_red(hsv)
 	green = mask_green(hsv)
 	blue = mask_blue(hsv)
