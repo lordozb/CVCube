@@ -1,7 +1,7 @@
 import cv2
 from img import shape
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 count = 0
 while True:
 	count += 1
