@@ -68,7 +68,7 @@ def shape(name):
 	fp.write(str(shape)+",")
 	area = cv2.contourArea(c)
 	#cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
-	red,green,blue,yellow,purple,orange = doMagic(img[y:y+h, x:x+w])
+	red,green,blue,yellow,pink,orange = doMagic(img[y:y+h, x:x+w])
 	cv2.imshow("small", img[y:y+h, x:x+w])
 
 
@@ -89,13 +89,13 @@ def shape(name):
 	print "blue = "+str(blue)
 	fp.write(str(blue)+",")
 
-	print "purple = "+str(purple)
-	fp.write(str(purple)+",")
+	print "pink = "+str(pink)
+	fp.write(str(pink)+",")
 
 	print "orange = "+str(orange)
 	fp.write(str(orange)+",")
 
-	total_area = max(area,red+green+blue+yellow+purple+orange)
+	total_area = max(area,red+green+blue+yellow+pink+orange)
 	print "area = "+str(total_area)
 	fp.write(str(total_area)+"\n")	
 	fp.close()

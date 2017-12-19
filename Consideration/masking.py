@@ -4,7 +4,7 @@ from mask_green import mask_green
 from mask_blue import mask_blue
 from mask_red import mask_red
 from mask_yellow import mask_yellow 
-from mask_purple import mask_purple
+from mask_pink import mask_pink
 from mask_orange import mask_orange
 
 def doMagic(img):
@@ -18,9 +18,9 @@ def doMagic(img):
 	green = mask_green(hsv)
 	blue = mask_blue(hsv)
 	yellow = mask_yellow(hsv)
-	purple = mask_purple(hsv)
+	pink = mask_pink(hsv)
 	orange = mask_orange(hsv)	
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
 
-	return red,green,blue,yellow,purple,orange
+	return red,green,blue,yellow,pink,orange
