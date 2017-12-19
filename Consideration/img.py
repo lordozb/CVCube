@@ -2,6 +2,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from masking import doMagic
+import os
 
 
 def shape(name):
@@ -25,57 +26,83 @@ def shape(name):
 	cnt, h = cv2.findContours(img_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 	print('Number of objects = '+str(len(cnt)))
+	fp = open("dataset.csv",'a')
 
-	for c in cnt:
+	c = max(cnt, key = cv2.contourArea)
 	
-		# DRAWING CONTOURS
-		cv2.drawContours(temp, [c], -1, (0, 255, 255), 3)
-		
-		# CALCULATING NUMBER OF SIDES	
-		peri = cv2.arcLength(c, True)
-		approx = cv2.approxPolyDP(c, 0.04 * peri, True)
-		sides = len(approx)
-
-		x,y,w,h = cv2.boundingRect(c)
-
-		print('I see a :') 	
-		shape = ''	
-
-		if sides == 3:
-			print 'Triangle'
-			shape = 'Triangle'
-
-		elif sides == 4:		
-			diff = ((max(w,h) - min(w,h)) / float(min(w,h))) * 100
+	# DRAWING CONTOURS
+	cv2.drawContours(temp, [c], -1, (0, 255, 255), 3)
 	
-			if diff < 5:
-				print 'Square'
-				shape = 'Square'
-			elif diff > 5:
-				print 'Rectangle'
-				shape = 'Rectangle'
+	# CALCULATING NUMBER OF SIDES	
+	peri = cv2.arcLength(c, True)
+	approx = cv2.approxPolyDP(c, 0.04 * peri, True)
+	sides = len(approx)
 
-		elif sides == 7 or sides == 8:
-			print 'circle'
-			shape = 'Circle'
+	x,y,w,h = cv2.boundingRect(c)
 
-		else :
-			print(str(sides)+" sided figure")
-			shape = str(sides)+' sided figure'
-		
-		area = cv2.contourArea(c)
+	print('I see a :') 	
+	shape = ''	
 
-		#cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
-		red,green,blue,yellow = doMagic(img[y:y+h, x:x+w])
-		cv2.imshow("small", img[y:y+h, x:x+w])
-		rect = cv2.minAreaRect(c)
-		print "Dimensions = "+str(rect[1])
-		print "red = "+str(red)
-		print "green = "+str(green)
-		print "yellow = "+str(yellow)
-		print "blue = "+str(blue)
-		cv2.waitKey(0)
-		cv2.destroyAllWindows()
+	if sides == 3:
+		print 'Triangle'
+		shape = 'Triangle'
+
+	elif sides == 4:		
+		diff = ((max(w,h) - min(w,h)) / float(min(w,h))) * 100
+
+		if diff < 5:
+			print 'Square'
+			shape = 'Square'
+		elif diff > 5:
+			print 'Rectangle'
+			shape = 'Rectangle'
+
+	elif sides == 7 or sides == 8:
+		print 'circle'
+		shape = 'Circle'
+
+	else :
+		print(str(sides)+" sided figure")
+		shape = str(sides)+' sided figure'
+	
+	fp.write(str(shape)+",")
+	area = cv2.contourArea(c)
+	#cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
+	red,green,blue,yellow = doMagic(img[y:y+h, x:x+w])
+	cv2.imshow("small", img[y:y+h, x:x+w])
+
+
+	rect = cv2.minAreaRect(c)		
+
+	print "Dimensions = "+str(rect[1])
+	fp.write(str(rect[1])+",")
+
+	print "red = "+str(red)
+	fp.write(str(red)+",")
+
+	print "green = "+str(green)
+	fp.write(str(green)+",")
+
+	print "yellow = "+str(yellow)
+	fp.write(str(yellow)+",")
+
+	print "blue = "+str(blue)
+	fp.write(str(blue))
+
+	total_area = max(area,red+green+blue+yellow)
+	print "area = "+str(total_area)
+	fp.write(str(total_area)+"\n")	
+	fp.close()
+	
+	path, dirs, files = os.walk("./Images").next()
+	var = len(files)
+	name = str(var)+".png"
+	cmd = "mv img.png "+name
+	os.system(cmd)
+	cmd = "mv "+name+" Images"
+	os.system(cmd)
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()
 
 
 
