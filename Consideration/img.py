@@ -5,7 +5,11 @@ from masking import doMagic
 import os
 
 
-def shape(name):
+def shape(name, pic):
+	fp = open("dataset.csv",'a')
+	fp.write(pic+",")
+	path, dirs, files = os.walk("./Images").next()
+	var = len(files)/3
 
 	# ORIGINAL IMAGE
 	img = cv2.imread(name)
@@ -20,13 +24,14 @@ def shape(name):
 	blur_gray = cv2.cvtColor(blur, cv2.COLOR_BGR2GRAY)
 
 	# APPLYING THRESHOLD
-	ret, img_threshold = cv2.threshold(blur_gray, 120, 255, cv2.THRESH_BINARY_INV)
-	
+	ret, img_threshold = cv2.threshold(blur_gray, 150, 255, cv2.THRESH_BINARY_INV)
+	cv2.imwrite(str(var)+"_threshold.png",img_threshold)
+	cv2.imshow("bin", img_threshold)	
+
 	# FINDING THE NUMBER OF CONTOURS
 	cnt, h = cv2.findContours(img_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-	print('Number of objects = '+str(len(cnt)))
-	fp = open("dataset.csv",'a')
+	print('Number of objects = '+str(len(cnt)))	
 
 	c = max(cnt, key = cv2.contourArea)
 	
@@ -68,44 +73,61 @@ def shape(name):
 	fp.write(str(shape)+",")
 	area = cv2.contourArea(c)
 	#cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
-	red,green,blue,yellow,pink,orange = doMagic(img[y:y+h, x:x+w])
+	red,green,blue,yellow,pink,orange,cyan,gray,black = doMagic(img[y:y+h, x:x+w])
 	cv2.imshow("small", img[y:y+h, x:x+w])
-
-
-	rect = cv2.minAreaRect(c)		
+	rect = cv2.minAreaRect(c)
 
 	print "Dimensions = "+str(rect[1])
 	fp.write(str(rect[1])+",")
 
-	print "red = "+str(red)
-	fp.write(str(red)+",")
+	total_area = max(area,red+green+blue+yellow+pink+orange+cyan+gray+black)
 
-	print "green = "+str(green)
-	fp.write(str(green)+",")
-
-	print "yellow = "+str(yellow)
-	fp.write(str(yellow)+",")
+	print "area = "+str(total_area)
+	fp.write(str(total_area)+",")
+	
+	
+	
+	
+	print "black = "+str(black)
+	fp.write(str(black)+",")
 
 	print "blue = "+str(blue)
 	fp.write(str(blue)+",")
 
-	print "pink = "+str(pink)
-	fp.write(str(pink)+",")
+	print "cyan = "+str(cyan)
+	fp.write(str(cyan)+",")
+
+	print "gray = "+str(gray)
+	fp.write(str(gray)+",")
+
+	print "green = "+str(green)
+	fp.write(str(green)+",")
 
 	print "orange = "+str(orange)
 	fp.write(str(orange)+",")
 
-	total_area = max(area,red+green+blue+yellow+pink+orange)
-	print "area = "+str(total_area)
-	fp.write(str(total_area)+"\n")	
+	print "pink = "+str(pink)
+	fp.write(str(pink)+",")
+
+	print "red = "+str(red)
+	fp.write(str(red)+",")	
+
+	print "yellow = "+str(yellow)
+	fp.write(str(yellow)+"\n")
+
+	
 	fp.close()
 	
-	path, dirs, files = os.walk("./Images").next()
-	var = len(files)
+	
+	cv2.imwrite(str(var)+"_contour.png",temp)	
 	name = str(var)+".png"
 	cmd = "mv img.png "+name
 	os.system(cmd)
 	cmd = "mv "+name+" Images"
+	os.system(cmd)
+	cmd = "mv "+str(var)+"_threshold.png Images"
+	os.system(cmd)
+	cmd = "mv "+str(var)+"_contour.png Images"
 	os.system(cmd)
 
 	cv2.waitKey(0)

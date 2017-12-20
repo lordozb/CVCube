@@ -1,5 +1,6 @@
 import cv2
 from img import shape
+import sys
 
 cap = cv2.VideoCapture(0)
 count = 0
@@ -12,4 +13,5 @@ while True:
 		cv2.destroyAllWindows()
 		break
 
-shape('img.png')
+x = sys.argv[1]
+shape("img.png",x)
