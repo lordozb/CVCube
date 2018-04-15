@@ -14,4 +14,4 @@ while True:
 		break
 
 x = sys.argv[1]
-shape("img.png",x)
+shape("object/"+x,x)

@@ -18,8 +18,8 @@ cv2.createTrackbar('s', 'result',0,255,nothing)
 cv2.createTrackbar('v', 'result',0,255,nothing)
 
 while(1):
-
-	frame = cv2.imread('green.png')
+	cap = cv2.VideoCapture(0)
+	_,frame = cap.read()
 	#converting to HSV
 	hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
 

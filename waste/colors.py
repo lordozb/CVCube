@@ -26,8 +26,7 @@ def colors(x1, x2, x3):
 	from sklearn.neighbors import KNeighborsClassifier as knc
 	knn = knc(n_neighbors = 12)
 	knn.fit(X,c)
-	x = np.array([x1,x2,x3])
-	
+	x = np.array([x1,x2,x3])	
 	keyval = {0:'white',1:'black',2:'red',3:'green',4:'blue',5:'yellow',6:'cyan',7:'purple',8:'pink',9:'brown',10:'grey',11:'orange'}
 	ans = knn.predict([x])
 	return keyval[ans[0]]
